@@ -12,3 +12,4 @@ C:\PJATK-APBD-Cw3-s30979\LinqConsoleLab.PL\obj\Debug\net10.0\refint\LinqConsoleL
 C:\PJATK-APBD-Cw3-s30979\LinqConsoleLab.PL\obj\Debug\net10.0\LinqConsoleLab.PL.pdb
 C:\PJATK-APBD-Cw3-s30979\LinqConsoleLab.PL\obj\Debug\net10.0\LinqConsoleLab.PL.genruntimeconfig.cache
 C:\PJATK-APBD-Cw3-s30979\LinqConsoleLab.PL\obj\Debug\net10.0\ref\LinqConsoleLab.PL.dll
+C:\PJATK-APBD-Cw3-s30979\LinqConsoleLab.PL\obj\Debug\net10.0\LinqConsoleLab.PL.sourcelink.json

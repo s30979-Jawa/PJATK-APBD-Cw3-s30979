@@ -116,7 +116,6 @@ public sealed class ZadaniaLinq
     public IEnumerable<string> Zadanie06_CzyWszyscyProwadzacyMajaKatedre()
     {
 
-
         var wszyscyMajaKatedre = DaneUczelni.Prowadzacy
             .All(p => !string.IsNullOrEmpty(p.Katedra));
 
@@ -156,7 +155,10 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie08_UnikalneMiastaStudentow()
     {
-        throw Niezaimplementowano(nameof(Zadanie08_UnikalneMiastaStudentow));
+        return DaneUczelni.Studenci
+            .OrderBy(s => s.Miasto)
+            .Select(s => s.Miasto)
+            .Distinct();
     }
 
     /// <summary>

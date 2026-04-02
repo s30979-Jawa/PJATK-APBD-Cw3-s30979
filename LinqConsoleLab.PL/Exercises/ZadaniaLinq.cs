@@ -1,4 +1,5 @@
 using LinqConsoleLab.PL.Data;
+using LinqConsoleLab.PL.Models;
 
 namespace LinqConsoleLab.PL.Exercises;
 
@@ -259,7 +260,15 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie13_GrupowanieZapisowWedlugPrzedmiotu()
     {
-        throw Niezaimplementowano(nameof(Zadanie13_GrupowanieZapisowWedlugPrzedmiotu));
+        return DaneUczelni.Zapisy
+            .Join(
+                DaneUczelni.Przedmioty,
+                z => z.PrzedmiotId,
+                p => p.Id,
+                (z, p) => p.Nazwa
+            )
+            .GroupBy(nazwa => nazwa)
+            .Select(g => $"{g.Key} {g.Count()}");
     }
 
     /// <summary>
@@ -276,7 +285,16 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie14_SredniaOcenaNaPrzedmiot()
     {
-        throw Niezaimplementowano(nameof(Zadanie14_SredniaOcenaNaPrzedmiot));
+        return DaneUczelni.Zapisy
+            .Where(z => z.OcenaKoncowa != null)
+            .Join(
+                DaneUczelni.Przedmioty,
+                z => z.PrzedmiotId,
+                p => p.Id,
+                (z, p) => new { p.Nazwa, z.OcenaKoncowa }
+            )
+            .GroupBy(x => x.Nazwa)
+            .Select(g => $"{g.Key} {g.Average(x => x.OcenaKoncowa)}");
     }
 
     /// <summary>
@@ -292,7 +310,18 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie15_ProwadzacyILiczbaPrzedmiotow()
     {
-        throw Niezaimplementowano(nameof(Zadanie15_ProwadzacyILiczbaPrzedmiotow));
+        return DaneUczelni.Prowadzacy
+            .GroupJoin(
+                DaneUczelni.Przedmioty,
+                pr => pr.Id,
+                przd => przd.ProwadzacyId,
+                (pr, przedmiotyGrupa) => new {
+                    pr.Imie,
+                    pr.Nazwisko,
+                    LiczbaPrzedmiotow = przedmiotyGrupa.Count()
+                }
+            )
+            .Select(x => $"{x.Imie} {x.Nazwisko} {x.LiczbaPrzedmiotow}");
     }
 
     /// <summary>
